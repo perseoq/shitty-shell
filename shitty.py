@@ -8,6 +8,8 @@ class Shitty(cmd.Cmd):
     def do_get(self, args):
         files = os.listdir('.')
         for file in files:
+            if file.startswith('.'):
+                continue
             print(file)
 
     def do_make(self, directory):
@@ -31,6 +33,13 @@ class Shitty(cmd.Cmd):
                 print(f"File {filename} created successfully.")
         except OSError as error:
             print(f"Failed to create file {filename}. Error: {error}")
+    def do_enter(self, directory):
+        try:
+            os.chdir(directory)
+            print(f"Changed directory to {directory}")
+        except OSError as error:
+            print(f"Failed to change directory to {directory}. Error: {error}")
+
 
 
 if __name__ == '__main__':
