@@ -80,5 +80,10 @@ class Shitty(cmd.Cmd):
             else:
                 print(f"Unknown command: {arg}")
 
+
+
 if __name__ == '__main__':
-    Shitty().cmdloop()
+    try:
+        Shitty().cmdloop()
+    except KeyboardInterrupt:
+            print('')
