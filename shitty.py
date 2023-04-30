@@ -1,4 +1,4 @@
-import cmd, os , curses, sys
+import cmd, os , curses, sys, stat, datetime
 
 class Shitty(cmd.Cmd):
     prompt = 'shitty> '
@@ -10,9 +10,15 @@ class Shitty(cmd.Cmd):
         files = os.listdir('.')
         for file in files:
             if file.startswith('.'):
-                continue
-            print(file)
-    
+                continue 
+            # print("") # esto es un ls nomal, a partir de aqui es el ls -l
+            stat_info = os.stat(file)
+            size = stat_info.st_size
+            permissions = stat.filemode(stat_info.st_mode)
+            mtime = datetime.datetime.fromtimestamp(stat_info.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+            print(f'{permissions}  {size:6d}  {mtime}  {file}')
+
+
     def do_x(self, args): # Esto hace que se pueda salir con exit
         sys.exit()
     
