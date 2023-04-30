@@ -1,5 +1,5 @@
 # shitty-shell
-shell emulator mkdir, rmdir, touch, ls
+Python shell emulator mkdir, rmdir, touch, ls
 
 ```sh
 shitty> help
